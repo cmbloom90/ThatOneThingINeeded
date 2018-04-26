@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Item</title>
+	<style>
+		.wrapper{
+			width: 1000px;
+        	margin: 0px auto;
+
+		}
+		.link {
+			float: right;
+			margin-bottom: 20px;
+		}
+		form {
+			margin-top: 50px;
+		}
+		button {
+			margin-top: 20px;
+			margin-left: 300px
+			
+		}
+	</style>	
+</head>
+<body>
+	<div class="wrapper">
+		<div class="link">
+			<a href="/dashboard">Home</a>
+			<a href="/logout">Logout</a>
+		</div>
+	
+		<h1>Create a New Wish List Item</h1>
+		{% if messages %}
+	        <ul class="messages">
+	            {% for message in messages %}
+	            <li
+	                {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+	            </li>
+	            {% endfor %}
+	        </ul>
+	        {% endif %}
+
+		<form action="create_item" method="post">
+			{% csrf_token %}
+			<p>Item/Product:<input type="text" name="name"></p>
+			<button type="submit">Add</button>
+		</form>
+	</div>
+
+</body>
+</html>

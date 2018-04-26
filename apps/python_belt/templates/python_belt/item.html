@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.wrapper{
+			width: 1000px;
+        	margin: 0px auto;
+		}
+		.link {
+			float: right;
+			margin-bottom: 20px;
+		}
+	</style>	
+	<title>Item</title>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="link">
+			<a href="/dashboard">Home</a>
+			<a href="/logout">Logout</a>
+		</div>
+		
+		<h1>{{item.name}}</h1><br>
+
+		<p>Users who added this product/item under their wish list:</p><br>
+		<div class="info">
+			<ul>
+			{% for person in other_wishers %}
+				
+					<li>{{person.name}}</li>
+				
+			{% endfor %}
+			</ul>
+		
+		</div>
+	</div>
+
+
+</body>
+</html>

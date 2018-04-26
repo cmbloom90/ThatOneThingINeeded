@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Wish List</title>
+	<style>
+		.wrapper{
+			width: 1000px;
+        	margin: 0px auto;
+
+		}
+		.link {
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="link">
+			<a href="/logout">Logout</a>
+		</div>
+
+		<h1>Hello, {{user.name}} </h1>
+
+		{% if messages %}
+	    <ul class="messages">
+	        {% for message in messages %}
+	        <li
+	            {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+	        </li>
+	        {% endfor %}
+	    </ul>
+	    {% endif %}
+
+		<p>Your Wish List:</p>
+			{% if user_items|length == 0 %}
+				<p>You don't have any items in your Wish List!</p>
+			{% endif %}	
+
+		<table border=1>
+			<tr>
+				<th>Item</th>
+				<th>Added By</th>
+				<th>Date Added</th>
+				<th>Action</th>
+			</tr>
+			{% for item in user_items %}
+				<tr>
+					<td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
+					<td>{{item.user.name}}</td>
+					<td>{{item.created_at}}</td>
+					<td><a href="/remove/{{item.id}}">Remove Item</a></td>
+
+				</tr>
+			{% endfor %}	
+		</table>
+
+		<p>Other Users' Wish List</p>
+
+		<table border=1>
+			<tr>
+				<th>Item</th>
+				<th>Added By</th>
+				<th>Date Added</th>
+				<th>Action</th>
+			</tr>
+			{% for item in other_items %}
+				<tr>
+					<td><a href="/wish_items/{{item.id}}">{{item.name}}</a></td>
+					<td>{{item.user.name}}</td>
+					<td>{{item.created_at}}</td>
+					<td><a href="/add/{{item.id}}">Add To My Wishlist</a></td>
+				</tr>
+			{% endfor%}
+
+			
+		</table>
+
+
+
+		<div class="link">	
+			<a href="/wish_items/create">Add Item</a>
+		</div>	
+	</div>	
+
+</body>
+</html>
